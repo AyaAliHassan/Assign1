@@ -1,0 +1,75 @@
+# Assign1
+1. A class is a definition of a user-defined type. A class declaration specifies how data is
+to be stored.
+
+2. A class represents the operations you can perform on a class object with a public
+interface of class methods; this is abstraction.The class can use private visibility 
+for data members
+
+3. A class defines a type, including how it can be used.An object is a variable or
+another data object, such as that produced by new, which is created and used
+according to the class definition.The relationship between a class and an object is
+the same as that between a standard type and a variable of that type.
+
+4. If you create several objects of a given class, each object comes with storage for its
+own set of data. But all the objects use the one set of member functions.
+
+5. 
+// #include <cstring>
+// class definition
+class BankAccount
+{
+private:
+char name[40]; 
+char acctnum[25]; 
+double balance;
+public:
+BankAccount(const char * client, const char * num, double bal = 0.0);
+void show(void) const;
+void deposit(double cash);
+void withdraw(double cash);
+};
+6. A class constructor is called when you create an object of that class or when you
+explicitly call the constructor. A class destructor is called when the object expires.
+
+7. 
+BankAccount::BankAccount(const char * client, const char * num, double bal)
+{
+strncpy(name, client, 39);
+name[39] = '\0';
+strncpy(acctnum, num, 24);
+acctnum[24] = '\0';
+balance = bal;
+}
+8. A default constructor either has no arguments or has defaults for all the arguments.
+Having a default constructor enables you to declare objects without initializing
+them, even if you’ve already defined an initializing constructor. It also allows you to
+declare arrays.
+9. 
+#ifndef STOCK30_H_
+#define STOCK30_H_
+class Stock
+{
+private:
+std::string company;
+long shares;
+double share_val;
+double total_val;
+void set_tot() { total_val = shares * share_val; }
+public:
+Stock(); // default constructor
+Stock(const std::string & co, long n, double pr);
+~Stock() {} // do-nothing destructor
+void buy(long num, double price);
+void sell(long num, double price);
+void update(double price);
+void show() const;
+const Stock & topval(const Stock & s) const;
+int numshares() const { return shares; }
+double shareval() const { return share_val; }
+double totalval() const { return total_val; }
+const string & co_name() const { return company; }
+};
+10. The this pointer is available to class methods. It points to the object used to
+invoke the method.Thus, this is the address of the object, and *this represents the
+object itself       
